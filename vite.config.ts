@@ -5,7 +5,7 @@ export default defineConfig(({ mode }): UserConfig => {
   
   console.log('=============RUN WITH MODE============== ', mode)
 
-  const basePath = mode === 'gh-deploy' ? '/alyans' : '/'
+  const basePath = mode === 'gh-deploy' ? '/alyans/' : '/'
 
   return {
     base: basePath,
