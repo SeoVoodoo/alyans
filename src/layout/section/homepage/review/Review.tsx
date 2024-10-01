@@ -17,16 +17,14 @@ type ReviewPropsType = {
 }
 
 export const Review: React.FC<ReviewPropsType> = (props: ReviewPropsType) => {
-    const [state, setState] = useState(null)
+    const [state, setState] = useState(null);
 
     setTimeout(() => {
         setState((window as any).store.getState().homePage.lastReview)
     }, 3000)
 
-
-
-    const lastReview: any = state || props.lastReview
-
+    const lastReview: any = state ?? props.lastReview;
+    
 
     const breakpoint = 767;
     return (
@@ -37,11 +35,15 @@ export const Review: React.FC<ReviewPropsType> = (props: ReviewPropsType) => {
             </Wrap>
             <Content>
                 <span>Пациент:</span>
-                <span><div>{lastReview.patient}</div><span>{lastReview.date}</span></span>
-                <span>История пациента:</span><span>{lastReview.history}</span>
-                <span>Понравилось:</span><span>{lastReview.liked}</span>
-                <span>{lastReview.notLiked ? "Не понравилось" : ""}</span><span>{lastReview.notLiked}</span>
-                <span>Представитель<br />клиники:</span><span>{lastReview.сlinicAdministrator}</span>
+                <span><div>{lastReview.patient}</div><div>{lastReview.date}</div></span>
+                <span>История пациента:</span>
+                <span>{lastReview.history}</span>                
+                <span>{lastReview.liked ? "Понравилось:" : ""}</span>
+                <span>{lastReview.liked}</span>
+                <span>{lastReview.notLiked ? "Не понравилось:" : ""}</span>
+                <span>{lastReview.notLiked}</span>
+                <span>Представитель<br />клиники:</span>
+                <span>{lastReview.сlinicAdministrator}</span>
             </Content>
             { props.windowWidth <= breakpoint && <StyledOrangeLink to="/reviews">Все отзывы</StyledOrangeLink> }
             
@@ -50,7 +52,7 @@ export const Review: React.FC<ReviewPropsType> = (props: ReviewPropsType) => {
 };
 
 const StyledReview = styled.section`
-   //padding: 50px 0; 
+    
 `
 const Wrap = styled.div`
     display: flex;
@@ -96,6 +98,7 @@ const Content = styled.div`
     }
     span:nth-child(2) {
         display: flex;
+        //flex-direction: row-reverse;
         justify-content: space-between;
     }
 

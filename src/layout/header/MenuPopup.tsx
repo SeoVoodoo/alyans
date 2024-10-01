@@ -25,14 +25,12 @@ export const MenuPopup: React.FC<MobileMenuPopupPropsType> = (props: MobileMenuP
         if(props.isOpen) {
             document.body.style.overflowY = "auto";
             document.body.style.position = "fixed";
-            document.body.style.width = "100%"; 
-            document.body.style.height = "max-content";            
+            document.body.style.width = "100%";                       
         }
         return () => {
             document.body.style.overflowY = "unset";
             document.body.style.position = "unset";
-            document.body.style.width= "unset"; 
-            document.body.style.height = "unset";            
+            document.body.style.width= "unset";                        
         }        
      }, [props.isOpen]);
         

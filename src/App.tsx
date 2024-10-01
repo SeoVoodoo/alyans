@@ -4,10 +4,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import { myTheme } from './styles/Theme.styled';
 import { Header } from './layout/header/Header';
 //import { HeaderNew } from './layout/header/Header';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 //import { FontSizeContext } from './context/FontSizeContext';
 import { Route, Routes } from 'react-router-dom';
-import { Prices } from './pages/main/prices/Prices';
+// import { Prices } from './pages/main/prices/Prices';
 import { AllDoctors } from './pages/main/AllDoctors';
 import { Timetable } from './pages/main/Timetable';
 import { Eco } from './pages/main/Eco';
@@ -33,6 +33,8 @@ import { Reviews } from './pages/main/Reviews';
 import { WindowSize } from './hooks/WindowSize';
 import { ModalWindowThanks } from './components/pop-up/ModalWindowThanks';
 import { ModalWindow3ndfl } from './components/pop-up/ModalWindow3ndfl';
+
+const Prices = lazy(() => import('./pages/main/prices/Prices'))
 
 
 const initialFontSize = 14;
@@ -257,7 +259,7 @@ function App(props: {store: StoreType}) {
           windowWidth={windowWidth}
         />
 
-        <>
+        <Suspense fallback={'Загрузка...'}>
           <Routes>
             <Route path="/" element = {<Home
               homePage={state.homePage}
@@ -298,7 +300,7 @@ function App(props: {store: StoreType}) {
             <Route path="/3d-tour" element = {<Tour />} />
             <Route path="/payment-terms" element = {<PaymentTerms />} />
           </Routes>
-        </>
+        </Suspense>
 
         <Footer
           contacts={state.header.contacts}

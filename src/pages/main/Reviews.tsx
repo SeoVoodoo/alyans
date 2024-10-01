@@ -13,15 +13,14 @@ type ReviewsPropsType = {
       srcDesktop:string           
       srcMobile:string
     }
-  }
-  visible?:boolean
+  }  
   dispatch:Function
+  hidden?:boolean
 }
 
 export const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => {
 
-  const visible = props.visible ?? true;
-
+  
   useEffect(() => {
 
     const script = document.createElement('script');
@@ -58,12 +57,12 @@ export const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => 
 
   
 
-  return (
-    <StyledReviews style={{display: visible ? 'block' : 'none'}}>
-      { visible && <PageTopPart 
-        pageTopPart={props.reviewsPage.pageTopPart} 
-        windowWidth={props.windowWidth}
-      />}
+  return (    
+    <StyledReviews hidden={props.hidden}>
+    { !props.hidden && <PageTopPart 
+      pageTopPart={props.reviewsPage.pageTopPart} 
+      windowWidth={props.windowWidth}
+    />}
     <Container> 
       <Wrap>
       <div
@@ -86,10 +85,12 @@ export const Reviews: React.FC<ReviewsPropsType> = (props: ReviewsPropsType) => 
   );
 };
 
-const StyledReviews = styled.div`
-  width: 100%;    
+const StyledReviews = styled.div<{hidden?:boolean}>`
+  width: 100%;
+  display: ${props => props.hidden ? "none" : "block"};    
 `
 const Wrap = styled.div`
   display: flex;
   justify-content: center;   
 `
+

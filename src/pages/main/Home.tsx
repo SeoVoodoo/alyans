@@ -139,7 +139,8 @@ export const Home: React.FC<HomePropsType> = (props: HomePropsType) => {
             reviewsPage={null as any}
             windowWidth={null as any}
             dispatch={props.dispatch}
-            visible={false}
+            //visible={false}
+            hidden
           />
         </>
     );

@@ -51,7 +51,7 @@ type PricesPropsType = {
   }
 }
 
-export const Prices: React.FC<PricesPropsType> = (props: PricesPropsType) => {
+const Prices: React.FC<PricesPropsType> = (props: PricesPropsType) => {
   const[curentBtnActive, setCurentBtnActive] = useState("surova");
   const breakpoint = 576;
   const handleTabClick = (status:string) => {
@@ -96,3 +96,6 @@ export const Prices: React.FC<PricesPropsType> = (props: PricesPropsType) => {
 const StyledPrices = styled.div`
   width: 100%;
 `  
+
+
+export default Prices
